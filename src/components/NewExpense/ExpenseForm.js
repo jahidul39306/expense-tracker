@@ -21,36 +21,49 @@ export default function ExpenseForm(props) {
   const submitHandler = (event) => {
     event.preventDefault();
     const formData = {
+      id: Math.random(),
       title: title,
       amount: +amount,
-      date: date,
+      date: new Date(date),
     };
     props.addToExpenses(formData);
+    setTitle("");
+    setAmount("");
+    setDate("");
   };
+
+  const cancelHandler = () =>{
+    props.stopEditing();
+    setTitle("");
+    setAmount("");
+    setDate("");
+  }
 
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" name="title" onChange={titleChangeHandler} />
+          <input type="text" name="title" value={title} onChange={titleChangeHandler} />
         </div>
         <div className="new-expense__control">
           <label>Amount</label>
           <input
             type="number"
             step="0.01"
-            name="title"
+            name="amount"
+            value={amount}
             onChange={amountChangeHandler}
           />
         </div>
         <div className="new-expense__control">
           <label>Date</label>
-          <input type="date" name="title" onChange={dateChangeHandler} />
+          <input type="date" name="date" value={date} onChange={dateChangeHandler} />
         </div>
       </div>
       <div className="new-expense__actions">
         <button type="submit">Add Expense</button>
+        <button onClick={cancelHandler}>Cancel</button>
       </div>
     </form>
   );
