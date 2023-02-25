@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ExpenseForm from "./ExpenseForm";
-import "./NewExpense.css";
+import styles from "./NewExpense.module.css";
 
 export default function NewExpense(props) {
   const [isEditing, setIsEditing] = useState(false);
@@ -13,7 +13,7 @@ export default function NewExpense(props) {
   };
 
   return (
-    <div className="new-expense">
+    <div className={styles["new-expense"]}>
       {isEditing ? (
         <ExpenseForm addToExpenses={props.addToExpenses} stopEditing={stopEditing}/>
       ) : (

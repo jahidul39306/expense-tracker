@@ -1,4 +1,4 @@
-import "./Chart.css";
+import styles from "./Chart.module.css";
 import ChartBar from "./ChartBar";
 
 const Chart = (props) => {
@@ -25,7 +25,7 @@ const Chart = (props) => {
   const amountValus = barValues.map((val) => val.amount);
   const maxAmount = Math.max(...amountValus);
   return (
-    <div className="chart">
+    <div className={styles.chart}>
       {barValues.map((point) => (
         <ChartBar
           key={point.month}
